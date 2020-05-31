@@ -52,7 +52,7 @@ const CustomLife = (props) => {
         <View style={styles.flexEnd}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handleSetValue("0")}
+            onPress={() => value.length != 0 && handleSetValue("0")}
             activeOpacity={0.7}
           >
             <Text style={styles.buttonText}>0</Text>
