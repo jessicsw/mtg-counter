@@ -28,7 +28,7 @@ const GameScreen = (props) => {
     };
   };
 
-  const playerCard = Object.keys(players).map((playerNum) => (
+  const playerCards = Object.keys(players).map((playerNum) => (
     <PlayerCard
       key={playerNum}
       player={playerNum}
@@ -38,7 +38,7 @@ const GameScreen = (props) => {
     />
   ));
 
-  return <View style={styles.container}>{playerCard}</View>;
+  return <View style={styles.container}>{playerCards}</View>;
 };
 
 const styles = StyleSheet.create({

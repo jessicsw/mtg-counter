@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function useLongPress(callback = () => {}, ms = 150) {
+export default function useLongPress(callback = () => {}, ms = 100) {
   const [startLongPress, setStartLongPress] = useState(false);
 
   useEffect(() => {

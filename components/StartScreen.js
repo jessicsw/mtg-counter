@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Animated,
 } from "react-native";
-import { normalizedCenter, screenWidth } from "../helper/dimensions";
+import { normalizedCenter } from "../helper/dimensions";
 import { Transition } from "react-navigation-fluid-transitions";
 import Button from "./Button";
 //need to import fluidNav to use transition
@@ -19,17 +19,17 @@ export default class StartScreen extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>MTG Counter</Text>
-        <Transition appear="right" disappear="left">
+        {/* <Transition appear="right" disappear="left">
           <Button
             onPress={this.nextScreen}
             buttonStyle={styles.button}
             buttonTextStyle={styles.buttonText}
             text={"START"}
           />
-        </Transition>
-        {/* <TouchableOpacity style={styles.button} onPress={this.nextScreen}>
+        </Transition> */}
+        <TouchableOpacity style={styles.button} onPress={this.nextScreen}>
           <Text style={styles.buttonText}>START</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
       </View>
     );
   }
