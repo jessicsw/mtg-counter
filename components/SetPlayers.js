@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Header from "./Header";
 import { normalizedCenter } from "../helper/dimensions";
 
+
 const SetPlayers = (props) => {
   const { navigate, state } = props.navigation;
 
@@ -15,39 +16,32 @@ const SetPlayers = (props) => {
 
     numPlayers === 2
       ? navigate("SetLayout", {
-          players,
-        })
+        players,
+      })
       : navigate("Game", {
-          players,
-        });
+        players,
+      });
   };
+
+  const generatePlayerButtons = () => {
+    let nums = [];
+
+    for (let i = 1; i <= 6; i++) {
+      nums.push(i);
+    };
+
+    return nums.map(num => (
+      <TouchableOpacity key={num} style={styles.button} onPress={() => nextScreen(num)}>
+        <Text style={styles.buttonText}>{num}</Text>
+      </TouchableOpacity>
+    ));
+  }
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>SET PLAYERS</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(1)}>
-            <Text style={styles.buttonText}>1</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(2)}>
-            <Text style={styles.buttonText}>2</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(3)}>
-            <Text style={styles.buttonText}>3</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(4)}>
-            <Text style={styles.buttonText}>4</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(5)}>
-            <Text style={styles.buttonText}>5</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => nextScreen(6)}>
-            <Text style={styles.buttonText}>6</Text>
-          </TouchableOpacity>
-        </View>
+      <Text style={styles.title}>SET PLAYERS</Text>
+      <View style={styles.buttonContainer}>
+        {generatePlayerButtons()}
       </View>
       <Header />
     </View>
@@ -58,14 +52,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5FCFF",
-  },
-  contentContainer: {
-    flex: 1,
-    alignItems: "center",
+    alignItems: 'center'
   },
   buttonContainer: {
+    flex: 1,
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent: 'center',
+    flexWrap: 'wrap',
+    marginRight: 40,
+    marginLeft: 40
   },
   title: {
     marginTop: normalizedCenter,
@@ -82,6 +77,7 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     paddingRight: 25,
     borderRadius: 10,
+    alignItems: 'center'
   },
   buttonText: {
     fontSize: 30,
