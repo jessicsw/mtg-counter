@@ -9,23 +9,38 @@ const SetPlayers = (props) => {
   const { lifePoints } = state.params;
 
   const nextScreen = (numPlayers) => {
-    numPlayers === 2
-      ? navigate("ChooseTwoPlayerLayout", {
-        numPlayers,
-        lifePoints
-      })
-      : navigate("Game", {
-        numPlayers,
-        lifePoints
-      });
+    switch (numPlayers) {
+      case 1:
+        navigate("Game", {
+          numPlayers,
+          lifePoints
+        });
+        break;
+      // case 3:
+      case 2:
+      case 4:
+      case 5:
+      case 6:
+        navigate("SetLayout", {
+          numPlayers,
+          lifePoints
+        });
+        break;
+    }
+
+    // numPlayers === 2
+    //   ? navigate("ChooseTwoPlayerLayout", {
+    //     numPlayers,
+    //     lifePoints
+    //   })
+    //   : navigate("Game", {
+    //     numPlayers,
+    //     lifePoints
+    //   });
   };
 
   const generatePlayerButtons = () => {
-    let nums = [];
-
-    for (let i = 1; i <= 6; i++) {
-      nums.push(i);
-    };
+    let nums = [1, 2, 3, 4, 5, 6];
 
     return nums.map(num => (
       <TouchableOpacity key={num} style={styles.button} onPress={() => nextScreen(num)}>

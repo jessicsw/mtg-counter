@@ -1,0 +1,101 @@
+import React from 'react';
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+
+const FourPlayers = (props) => {
+  const { nextScreen } = props;
+
+  const layoutOne = (() => {
+    const nums = [1, 2, 3, 4];
+
+    return nums.map(num => (
+      num % 2 === 1
+        ? <View key={num} style={[styles.square, styles.heightBoost]}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        : <View key={num} style={[styles.square, styles.heightBoost]}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "-90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+    ));
+  })();
+
+  return (
+    <View style={styles.buttonContainer}>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+        {layoutOne}
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+        <View style={[styles.square, { flexBasis: '69%', height: '15%' }]}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "180deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "-90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={[styles.square, { flexBasis: '68%', height: '15%' }]}>
+          <MaterialIcons
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  buttonContainer: {
+    width: '95%',
+    flexDirection: "row",
+    justifyContent: 'center',
+  },
+  button: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    flexBasis: '41%',
+    justifyContent: 'center',
+    height: '100%'
+  },
+  square: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#9f82b2",
+    flexBasis: '33%',
+    height: '28%',
+    borderRadius: 10,
+    margin: '1%'
+  },
+  heightBoost: {
+    height: '30%'
+  }
+});
+
+export default FourPlayers;

@@ -6,7 +6,7 @@ import StartScreen from "./components/StartScreen";
 import SetLifePoints from "./components/SetLifePoints";
 import SetPlayers from "./components/SetPlayers";
 import GameScreen from "./components/GameScreen";
-import ChooseTwoPlayerLayout from './components/ChooseTwoPlayerLayout';
+import SetLayout from './components/SetLayout';
 import { FluidNavigator } from "react-native";
 
 const RootStack = createStackNavigator(
@@ -15,7 +15,7 @@ const RootStack = createStackNavigator(
     SetLife: SetLifePoints,
     SetPlayers: SetPlayers,
     Game: GameScreen,
-    ChooseTwoPlayerLayout: ChooseTwoPlayerLayout
+    SetLayout: SetLayout
   },
   {
     initialRouteName: "Start",

@@ -20,11 +20,7 @@ const SetLifePoints = (props) => {
   };
 
   const generateLifePointButtons = () => {
-    let nums = [];
-
-    for (i = 20; i <= 40; i += 10) {
-      nums.push(i);
-    }
+    let nums = [20, 30, 40];
 
     return nums.map(num => (
       <TouchableOpacity

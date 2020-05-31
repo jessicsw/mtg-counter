@@ -6,6 +6,10 @@ import addBackgroundColor from "../helper/addBackgroundColor";
 const GameScreen = (props) => {
   const { numPlayers, lifePoints, layout } = props.navigation.state.params;
 
+  switch (numPlayers) {
+    default:
+
+  }
   const playerCards = () => {
     let players = [];
 

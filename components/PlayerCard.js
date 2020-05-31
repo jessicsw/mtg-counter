@@ -3,6 +3,10 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import useLongPress from "../helper/useLongPress";
 
+
+// NOTES
+// Currently supports different layouts for 2 players
+
 const PlayerCard = (props) => {
   const { player, lifePoints, layout, playerBackgroundColor } = props;
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
@@ -70,7 +74,7 @@ const PlayerCard = (props) => {
         onLayout={getComponentDimensions}
         style={[
           styles.playerCard,
-          player == 2 && styles.marginTop,
+          player > 1 && styles.marginTop,
           playerBackgroundColor,
         ]}
       >
@@ -98,6 +102,7 @@ const PlayerCard = (props) => {
           onPress={() => loseLife()}
           {...useLongPress(loseLife)}
         />
+        <Text>{player}</Text>
       </View>
     </View>
   );
