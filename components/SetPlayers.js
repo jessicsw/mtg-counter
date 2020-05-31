@@ -6,20 +6,17 @@ import { normalizedCenter } from "../helper/dimensions";
 
 const SetPlayers = (props) => {
   const { navigate, state } = props.navigation;
+  const { lifePoints } = state.params;
 
   const nextScreen = (numPlayers) => {
-    let players = {};
-
-    for (let i = 1; i <= numPlayers; i++) {
-      players[i] = state.params.lifePoints;
-    }
-
     numPlayers === 2
-      ? navigate("SetLayout", {
-        players,
+      ? navigate("ChooseTwoPlayerLayout", {
+        numPlayers,
+        lifePoints
       })
       : navigate("Game", {
-        players,
+        numPlayers,
+        lifePoints
       });
   };
 

@@ -4,12 +4,13 @@ import { MaterialIcons } from "@expo/vector-icons";
 import Header from "./Header";
 import { normalizedCenter } from "../helper/dimensions";
 
-const SetLayout = props => {
-  const { players } = props.navigation.state.params;
+const ChooseTwoPlayerLayout = props => {
+  const { numPlayers, lifePoints } = props.navigation.state.params;
 
   const nextScreen = layout => {
     props.navigation.navigate("Game", {
-      players: players,
+      numPlayers: numPlayers,
+      lifePoints: lifePoints,
       layout: layout
     });
   };
@@ -88,4 +89,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SetLayout;
+export default ChooseTwoPlayerLayout;

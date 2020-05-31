@@ -4,19 +4,27 @@ import PlayerCard from "./PlayerCard";
 import addBackgroundColor from "../helper/addBackgroundColor";
 
 const GameScreen = (props) => {
-  const { players, layout } = props.navigation.state.params;
+  const { numPlayers, lifePoints, layout } = props.navigation.state.params;
 
-  const playerCards = Object.keys(players).map((playerNum) => (
-    <PlayerCard
-      key={playerNum}
-      player={playerNum}
-      lifePoints={players[playerNum]}
-      layout={layout}
-      playerBackgroundColor={addBackgroundColor()}
-    />
-  ));
+  const playerCards = () => {
+    let players = [];
 
-  return <View style={styles.container}>{playerCards}</View>;
+    for (let i = 1; i <= numPlayers; i++) {
+      players.push(i);
+    };
+
+    return players.map(player => (
+      <PlayerCard
+        key={player}
+        player={player}
+        lifePoints={lifePoints}
+        layout={layout}
+        playerBackgroundColor={addBackgroundColor()}
+      />
+    ));
+  }
+
+  return <View style={styles.container}>{playerCards()}</View>;
 };
 
 const styles = StyleSheet.create({
