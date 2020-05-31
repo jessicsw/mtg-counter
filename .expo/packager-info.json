@@ -1,0 +1,10 @@
+{
+  "devToolsPort": 19002,
+  "expoServerPort": 19000,
+  "packagerPort": 19001,
+  "packagerPid": 16464,
+  "expoServerNgrokUrl": "https://bf-vvc.jessicsw.counter.exp.direct",
+  "packagerNgrokUrl": "https://packager.bf-vvc.jessicsw.counter.exp.direct",
+  "ngrokPid": 16473,
+  "webpackServerPort": null
+}
