@@ -4,7 +4,7 @@ import Modal from "react-native-modal";
 import Header from "./Header";
 import { normalizedCenter } from "../helper/dimensions";
 import CustomLife from "./CustomLife";
-import SlideInView from "./SlideInView";
+
 
 const SetLifePoints = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -19,36 +19,36 @@ const SetLifePoints = (props) => {
     setModalVisible(!modalVisible);
   };
 
+  const generateLifePointButtons = () => {
+    let nums = [];
+
+    for (i = 20; i <= 40; i += 10) {
+      nums.push(i);
+    }
+
+    return nums.map(num => (
+      <TouchableOpacity
+        key={num}
+        style={styles.button}
+        onPress={() => nextScreen(num)}
+      >
+        <Text style={styles.buttonText}>{num}</Text>
+      </TouchableOpacity>
+    ));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.title}>SET LIFE POINTS</Text>
-
         <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => nextScreen(20)}
-          >
-            <Text style={styles.buttonText}>20</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => nextScreen(30)}
-          >
-            <Text style={styles.buttonText}>30</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => nextScreen(40)}
-          >
-            <Text style={styles.buttonText}>40</Text>
-          </TouchableOpacity>
+          {generateLifePointButtons()}
         </View>
         <TouchableOpacity
           style={styles.buttonBorder}
           onPress={() => setCustomLife()}
         >
-          <Text style={[styles.buttonText, { color: "#9f82b2" }]}>
+          <Text style={[styles.buttonText, styles.purpleText]}>
             CUSTOM LIFE
           </Text>
         </TouchableOpacity>
@@ -60,7 +60,6 @@ const SetLifePoints = (props) => {
         isVisible={modalVisible}
       >
         <CustomLife
-          style={styles.calc}
           toggleModal={() => setModalVisible(!modalVisible)}
           setLifePoints={(customLifePoints) => nextScreen(customLifePoints)}
         />
@@ -112,6 +111,9 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "200",
   },
+  purpleText: {
+    color: "#9f82b2"
+  }
 });
 
 export default SetLifePoints;
