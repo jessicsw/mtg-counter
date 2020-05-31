@@ -1,32 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import PlayerCard from "./PlayerCard";
+import addBackgroundColor from "../helper/addBackgroundColor";
 
 const GameScreen = (props) => {
   const { players, layout } = props.navigation.state.params;
-  let playerBackgroundColors = [
-    "#FFC30B", //yellow
-    "#86D086", //sea green
-    "#792F79", //purple
-    "#D08686", //mauve
-    "#ADD8E6", //light blue
-    "#DED978", //chickpea
-  ];
-
-  const addBackgroundColor = () => {
-    let playerBackgroundColor =
-      playerBackgroundColors[
-        Math.floor(Math.random() * playerBackgroundColors.length)
-      ];
-
-    playerBackgroundColors = playerBackgroundColors.filter((color) => {
-      return color !== playerBackgroundColor;
-    });
-
-    return {
-      backgroundColor: playerBackgroundColor,
-    };
-  };
 
   const playerCards = Object.keys(players).map((playerNum) => (
     <PlayerCard

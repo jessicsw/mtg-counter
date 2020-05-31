@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -14,81 +14,41 @@ const CustomLife = (props) => {
   // fix inconsistent padding on "1" button
 
   const handleSetValue = (num) => {
-    setValue(value.length === 3 ? value : value + num);
+    if (value.length === 0 && num === 0) {
+      setValue("");
+    } else {
+      setValue(value.length === 3 ? value : value + num);
+    }
   };
 
   const backspaceValue = () => {
     value.length > 0 && setValue(value.slice(0, -1));
   };
+
+  const generatebuttons = () => {
+    let nums = [];
+
+    for (let i = 1; i <= 9; i++) {
+      nums.push(i);
+    }
+
+    return nums.map((num) => (
+      <TouchableOpacity
+        key={num}
+        style={styles.button}
+        onPress={() => handleSetValue(num)}
+        activeOpacity={0.7}
+      >
+        <Text style={styles.buttonText}>{num}</Text>
+      </TouchableOpacity>
+    ));
+  };
+
   return (
     <View style={styles.container}>
       <TextInput style={styles.textInput} value={value} maxLength={1} />
       <View style={styles.numberContainer}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("1")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>1</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("2")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>2</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("3")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>3</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("4")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>4</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("5")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>5</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("6")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>6</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("7")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>7</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("8")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>8</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => handleSetValue("9")}
-          activeOpacity={0.7}
-        >
-          <Text style={styles.buttonText}>9</Text>
-        </TouchableOpacity>
+        {generatebuttons()}
         <View style={styles.flexEnd}>
           <TouchableOpacity
             style={styles.button}
@@ -122,7 +82,6 @@ const CustomLife = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <Text>{typeof value}</Text>
     </View>
   );
 };
