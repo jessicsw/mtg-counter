@@ -2,15 +2,15 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-const FivePlayers = (props) => {
+const SixPlayers = (props) => {
   const { nextScreen } = props;
 
   const layoutOne = (() => {
-    const nums = [1, 2, 3, 4];
+    const nums = [1, 2, 3, 4, 5, 6];
 
     return nums.map(num => (
       num % 2 === 1
-        ? <View key={num} style={styles.square}>
+        ? <View key={num} style={[styles.square, styles.boostHeight]}>
           <MaterialIcons
             style={{ transform: [{ rotate: "90deg" }] }}
             name="person"
@@ -18,31 +18,7 @@ const FivePlayers = (props) => {
             color="#fff"
           />
         </View>
-        : <View key={num} style={styles.square}>
-          <MaterialIcons
-            style={{ transform: [{ rotate: "-90deg" }] }}
-            name="person"
-            size={28}
-            color="#fff"
-          />
-        </View>
-    ));
-  })();
-
-  const layoutTwo = (() => {
-    const nums = [1, 2, 3, 4, 5];
-
-    return nums.map(num => (
-      num < 3
-        ? <View key={num} style={[styles.halfColumnSquare]}>
-          <MaterialIcons
-            style={{ transform: [{ rotate: "90deg" }] }}
-            name="person"
-            size={28}
-            color="#fff"
-          />
-        </View>
-        : <View key={num} style={styles.thirdColumnSquare}>
+        : <View key={num} style={[styles.square, styles.boostHeight]}>
           <MaterialIcons
             style={{ transform: [{ rotate: "-90deg" }] }}
             name="person"
@@ -57,7 +33,49 @@ const FivePlayers = (props) => {
     <View style={styles.buttonContainer}>
       <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
         {layoutOne}
-        <View style={[styles.square, styles.lowerHeight, { flexBasis: '68%' }]}>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+        <View style={[styles.square, { flexBasis: '73%', height: '12.5%' }]}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "180deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "-90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={styles.square}>
+          <MaterialIcons
+            style={{ transform: [{ rotate: "-90deg" }] }}
+            name="person"
+            size={28}
+            color="#fff"
+          />
+        </View>
+        <View style={[styles.square, { flexBasis: '73%', height: '12.5%' }]}>
           <MaterialIcons
             name="person"
             size={28}
@@ -65,62 +83,35 @@ const FivePlayers = (props) => {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonFlexColumn} onPress={() => nextScreen("180deg")}>
-        {layoutTwo}
-      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    flex: 1,
+    width: '95%',
     flexDirection: "row",
     justifyContent: 'center',
   },
   button: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    flexBasis: '41%',
+    flexBasis: '43%',
     justifyContent: 'center',
-  },
-  buttonFlexColumn: {
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    flexBasis: '41%',
-    height: '50%',
-    alignContent: 'center',
+    height: '100%'
   },
   square: {
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#9f82b2",
-    flexBasis: '33%',
-    height: '14%',
+    flexBasis: '35%',
+    height: '17%',
     borderRadius: 10,
     margin: '1%'
   },
-  halfColumnSquare: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9f82b2",
-    flexBasis: '40%',
-    padding: 15,
-    borderRadius: 10,
-    margin: '1%'
-  },
-  thirdColumnSquare: {
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9f82b2",
-    flexBasis: '26%',
-    padding: 15,
-    borderRadius: 10,
-    margin: '1%'
-  },
-  lowerHeight: {
-    height: '12%'
+  boostHeight: {
+    height: '20%',
   }
 });
 
-export default FivePlayers;
+export default SixPlayers;

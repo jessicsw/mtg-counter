@@ -22,7 +22,7 @@ const SetLayout = props => {
     <View style={styles.container}>
       <Text style={styles.title}>CHOOSE LAYOUT</Text>
 
-      <FivePlayers nextScreen={nextScreen} />
+      <SixPlayers nextScreen={nextScreen} />
 
       <Header />
     </View>
