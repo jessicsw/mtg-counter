@@ -10,7 +10,7 @@ const FourPlayers = (props) => {
 
     return nums.map(num => (
       num % 2 === 1
-        ? <View key={num} style={[styles.square, styles.heightBoost]}>
+        ? <View key={num} style={[styles.square, styles.boostHeight]}>
           <MaterialIcons
             style={{ transform: [{ rotate: "90deg" }] }}
             name="person"
@@ -18,7 +18,7 @@ const FourPlayers = (props) => {
             color="#fff"
           />
         </View>
-        : <View key={num} style={[styles.square, styles.heightBoost]}>
+        : <View key={num} style={[styles.square, styles.boostHeight]}>
           <MaterialIcons
             style={{ transform: [{ rotate: "-90deg" }] }}
             name="person"
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     margin: '1%'
   },
-  heightBoost: {
+  boostHeight: {
     height: '30%'
   }
 });

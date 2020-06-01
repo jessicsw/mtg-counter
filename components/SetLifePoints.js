@@ -19,9 +19,9 @@ const SetLifePoints = (props) => {
     setModalVisible(!modalVisible);
   };
 
-  const generateLifePointButtons = () => {
+  const generateLifePointButtons = (() => {
     let nums = [20, 30, 40];
-
+    console.log('running generateLifePointButtons fxn')
     return nums.map(num => (
       <TouchableOpacity
         key={num}
@@ -31,14 +31,14 @@ const SetLifePoints = (props) => {
         <Text style={styles.buttonText}>{num}</Text>
       </TouchableOpacity>
     ));
-  };
+  })();
 
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
         <Text style={styles.title}>SET LIFE POINTS</Text>
         <View style={styles.buttonContainer}>
-          {generateLifePointButtons()}
+          {generateLifePointButtons}
         </View>
         <TouchableOpacity
           style={styles.buttonBorder}

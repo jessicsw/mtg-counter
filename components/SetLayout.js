@@ -4,6 +4,8 @@ import { normalizedCenter } from "../helper/dimensions";
 import Header from "./Header";
 import TwoPlayers from './layouts/TwoPlayers';
 import FourPlayers from './layouts/FourPlayers';
+import FivePlayers from './layouts/FivePlayers';
+import SixPlayers from './layouts/SixPlayers';
 
 const SetLayout = props => {
   const { numPlayers, lifePoints } = props.navigation.state.params;
@@ -20,7 +22,7 @@ const SetLayout = props => {
     <View style={styles.container}>
       <Text style={styles.title}>CHOOSE LAYOUT</Text>
 
-      <FourPlayers nextScreen={nextScreen} />
+      <FivePlayers nextScreen={nextScreen} />
 
       <Header />
     </View>
