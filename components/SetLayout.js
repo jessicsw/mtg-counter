@@ -18,12 +18,22 @@ const SetLayout = props => {
     });
   };
 
+  const showLayoutOptions = (() => {
+    if (numPlayers == 2) {
+      return <TwoPlayers nextScreen={nextScreen} />;
+    } else if (numPlayers == 4) {
+      return <FourPlayers nextScreen={nextScreen} />;
+    } else if (numPlayers == 5) {
+      return <FivePlayers nextScreen={nextScreen} />;
+    } else if (numPlayers == 6) {
+      return <SixPlayers nextScreen={nextScreen} />;
+    }
+  })();
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>CHOOSE LAYOUT</Text>
-
-      <SixPlayers nextScreen={nextScreen} />
-
+      {showLayoutOptions}
       <Header />
     </View>
   );

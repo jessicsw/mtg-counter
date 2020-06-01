@@ -27,16 +27,6 @@ const SetPlayers = (props) => {
         });
         break;
     }
-
-    // numPlayers === 2
-    //   ? navigate("ChooseTwoPlayerLayout", {
-    //     numPlayers,
-    //     lifePoints
-    //   })
-    //   : navigate("Game", {
-    //     numPlayers,
-    //     lifePoints
-    //   });
   };
 
   const generatePlayerButtons = () => {
