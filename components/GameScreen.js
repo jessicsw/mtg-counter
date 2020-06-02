@@ -4,6 +4,7 @@ import DefaultPlayerCard from "./playercards/DefaultPlayerCard";
 import addBackgroundColor from "../helper/addBackgroundColor";
 import ThreePlayerCard from './playercards/ThreePlayerCard';
 import FourPlayerCard from './playercards/FourPlayerCard';
+import GameButton from './GameButton';
 
 const GameScreen = (props) => {
   const { numPlayers, lifePoints, layout } = props.navigation.state.params;
@@ -55,7 +56,12 @@ const GameScreen = (props) => {
     }
   })();
 
-  return <View style={handleStyles}>{playerCards}</View>;
+  return (
+    <View style={handleStyles}>
+      {playerCards}
+      <GameButton numPlayers={numPlayers} />
+    </View>
+  )
 };
 
 const styles = StyleSheet.create({

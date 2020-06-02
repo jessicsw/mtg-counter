@@ -7,7 +7,7 @@ import CustomLife from "./CustomLife";
 
 
 const SetLifePoints = (props) => {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const nextScreen = (lifePoints) => {
     props.navigation.navigate("SetPlayers", {
@@ -16,7 +16,7 @@ const SetLifePoints = (props) => {
   };
 
   const setCustomLife = () => {
-    setModalVisible(!modalVisible);
+    setIsModalVisible(!isModalVisible);
   };
 
   const generateLifePointButtons = (() => {
@@ -53,10 +53,10 @@ const SetLifePoints = (props) => {
         animationIn="fadeIn"
         animationOut="fadeOut"
         hasBackdrop={true}
-        isVisible={modalVisible}
+        isVisible={isModalVisible}
       >
         <CustomLife
-          toggleModal={() => setModalVisible(!modalVisible)}
+          toggleModal={() => setIsModalVisible(!isModalVisible)}
           setLifePoints={(customLifePoints) => nextScreen(customLifePoints)}
         />
       </Modal>
