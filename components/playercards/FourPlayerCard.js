@@ -1,26 +1,14 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
-import useLongPress from "../helper/useLongPress";
+import useLongPress from '../../helper/useLongPress';
 
-
-// NOTES
-// Currently supports different layouts for 2 players
-
-const PlayerCard = (props) => {
-  const { player, lifePoints, layout, playerBackgroundColor } = props;
+const FourPlayerCard = (props) => {
+  const { player, lifePoints, playerBackgroundColor } = props;
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
 
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
-
-  const setGameLayout = () => {
-    if (layout === "180deg") {
-      return player == 1 ? styles.topDown : styles.center;
-    } else {
-      return styles.sideBySide;
-    }
-  };
 
   const getComponentDimensions = (event) => {
     let { width, height } = event.nativeEvent.layout;
@@ -30,31 +18,31 @@ const PlayerCard = (props) => {
 
   //Setup absolute position and size of +/- buttons
   const setButtonPosition = (position) => {
-    if (player == 1 && layout === "180deg") {
-      return position === "top"
-        ? styles.buttonAbsoluteBottom
-        : styles.buttonAbsoluteTop;
-    } else if (player == 2 && layout === "180deg") {
-      return position === "top"
+    if (player === 1) {
+      return position === "+"
+        ? styles.buttonAbsoluteRight
+        : styles.buttonAbsoluteLeft;
+    } else if (player === 2) {
+      return position === "+"
+        ? styles.buttonAbsoluteLeft
+        : styles.buttonAbsoluteRight;
+    } else {
+      return position === "+"
         ? styles.buttonAbsoluteTop
         : styles.buttonAbsoluteBottom;
-    } else {
-      return position === "top"
-        ? styles.buttonSideBySidePlus
-        : styles.buttonSideBySideMinus;
     }
   };
 
   const setButtonSize = () => {
-    if (layout === "180deg") {
-      return {
-        width,
-        height: height / 2,
-      };
-    } else {
+    if (player < 3) {
       return {
         width: width / 2,
         height,
+      };
+    } else {
+      return {
+        width,
+        height: height / 2,
       };
     }
   };
@@ -68,25 +56,49 @@ const PlayerCard = (props) => {
     playerLifePoints > 0 && setPlayerLifePoints(playerLifePoints - 1);
   };
 
+  // Adds CSS unique to layout
+  const handleTextTransform = (() => {
+    if (player == 1) {
+      return styles.leftTransform;
+    } else if (player == 2) {
+      return styles.rightTransform;
+    }
+  })();
+
+  const addMargins = (() => {
+    if (player === 1) {
+      return { marginRight: 10 };
+    } else if (player === 3) {
+      return { marginTop: 10 };
+    }
+  })();
+
+  const addFlexBasis = (() => {
+    if (player < 3) {
+      return { flexBasis: '66%' };
+    } else {
+      return { flexBasis: '34%' };
+    }
+  })();
+
   return (
     <View style={styles.container}>
       <View
         onLayout={getComponentDimensions}
         style={[
           styles.playerCard,
-          player > 1 && styles.marginTop,
           playerBackgroundColor,
+          addMargins,
+          addFlexBasis
         ]}
       >
-        <View style={[setGameLayout(), styles.center]}>
-          <View style={styles.center}>
-            <Text style={styles.text}>{playerLifePoints}</Text>
-            <AntDesign name="heart" size={30} color="#000" />
-          </View>
+        <View style={[styles.center, handleTextTransform]}>
+          <Text style={styles.text}>{playerLifePoints}</Text>
+          <AntDesign name="heart" size={30} color="#000" />
         </View>
         <TouchableOpacity
           style={[
-            setButtonPosition("top"),
+            setButtonPosition("+"),
             width && setButtonSize(),
             styles.button,
           ]}
@@ -95,14 +107,13 @@ const PlayerCard = (props) => {
         />
         <TouchableOpacity
           style={[
-            setButtonPosition("bottom"),
+            setButtonPosition("-"),
             width && setButtonSize(),
             styles.button,
           ]}
           onPress={() => loseLife()}
           {...useLongPress(loseLife)}
         />
-        <Text>{player}</Text>
       </View>
     </View>
   );
@@ -111,44 +122,26 @@ const PlayerCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#000",
-    width: "100%",
-    height: "100%",
+    flexBasis: '50%',
+    backgroundColor: '#000'
   },
   playerCard: {
-    flex: 1,
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    width: "100%",
-    height: "100%",
-    backgroundColor: "white",
-  },
-  topDown: {
-    flex: 1,
-    transform: [{ rotate: "180deg" }],
-  },
-  sideBySide: {
-    flex: 1,
-    transform: [{ rotate: "-90deg" }],
+    justifyContent: 'center'
   },
   text: {
-    fontSize: 225,
+    fontSize: 130,
     letterSpacing: 0.6,
     fontWeight: "100",
     fontFamily: "Helvetica",
   },
   button: {
-    flex: 1,
     borderRadius: 10,
     position: "absolute",
     backgroundColor: "#fff",
     opacity: 0,
   },
   center: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -158,15 +151,18 @@ const styles = StyleSheet.create({
   buttonAbsoluteBottom: {
     bottom: 0,
   },
-  buttonSideBySidePlus: {
+  buttonAbsoluteLeft: {
     left: 0,
   },
-  buttonSideBySideMinus: {
+  buttonAbsoluteRight: {
     right: 0,
   },
-  marginTop: {
-    marginTop: 10,
+  leftTransform: {
+    transform: [{ rotate: "90deg" }]
+  },
+  rightTransform: {
+    transform: [{ rotate: "-90deg" }]
   },
 });
 
-export default PlayerCard;
+export default FourPlayerCard;

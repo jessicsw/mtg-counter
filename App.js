@@ -25,7 +25,7 @@ const RootStack = createStackNavigator(
 
 const AppContainer = createAppContainer(RootStack);
 
-export default App = () => {
+const App = () => {
   return (
     <View style={{ flex: 1 }}>
       <StatusBar hidden={true} />
@@ -33,3 +33,5 @@ export default App = () => {
     </View>
   );
 };
+
+export default App;

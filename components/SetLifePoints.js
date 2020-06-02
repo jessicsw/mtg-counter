@@ -21,7 +21,7 @@ const SetLifePoints = (props) => {
 
   const generateLifePointButtons = (() => {
     let nums = [20, 30, 40];
-    console.log('running generateLifePointButtons fxn')
+
     return nums.map(num => (
       <TouchableOpacity
         key={num}

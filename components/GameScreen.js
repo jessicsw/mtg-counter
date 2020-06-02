@@ -1,42 +1,72 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import PlayerCard from "./PlayerCard";
+import DefaultPlayerCard from "./playercards/DefaultPlayerCard";
 import addBackgroundColor from "../helper/addBackgroundColor";
+import ThreePlayerCard from './playercards/ThreePlayerCard';
+import FourPlayerCard from './playercards/FourPlayerCard';
 
 const GameScreen = (props) => {
   const { numPlayers, lifePoints, layout } = props.navigation.state.params;
 
-  switch (numPlayers) {
-    default:
-
-  }
-  const playerCards = () => {
+  const playerCards = (() => {
     let players = [];
 
     for (let i = 1; i <= numPlayers; i++) {
       players.push(i);
-    };
+    }
 
-    return players.map(player => (
-      <PlayerCard
-        key={player}
-        player={player}
-        lifePoints={lifePoints}
-        layout={layout}
-        playerBackgroundColor={addBackgroundColor()}
-      />
-    ));
-  }
+    if (numPlayers <= 2) {
+      return players.map(player => (
+        <DefaultPlayerCard
+          key={player}
+          player={player}
+          lifePoints={lifePoints}
+          layout={layout}
+          playerBackgroundColor={addBackgroundColor()}
+        />
+      ));
+    } else if (numPlayers === 3) {
+      return players.map(player => (
+        <ThreePlayerCard
+          key={player}
+          player={player}
+          lifePoints={lifePoints}
+          playerBackgroundColor={addBackgroundColor()}
+        />
+      ));
+    } else if (numPlayers === 4) {
+      return players.map(player => (
+        <FourPlayerCard
+          key={player}
+          player={player}
+          lifePoints={lifePoints}
+          layout={layout}
+          playerBackgroundColor={addBackgroundColor()}
+        />
+      ));
+    }
+  })();
 
-  return <View style={styles.container}>{playerCards()}</View>;
+  const handleStyles = (() => {
+    if (numPlayers < 3) {
+      return styles.container;
+    } else if (numPlayers === 3) {
+      return styles.threePlayer;
+    }
+  })();
+
+  return <View style={handleStyles}>{playerCards}</View>;
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    alignItems: 'flex-start',
   },
+  threePlayer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  }
 });
 
 export default GameScreen;

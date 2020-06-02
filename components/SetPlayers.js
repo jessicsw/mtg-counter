@@ -11,12 +11,12 @@ const SetPlayers = (props) => {
   const nextScreen = (numPlayers) => {
     switch (numPlayers) {
       case 1:
+      case 3:
         navigate("Game", {
           numPlayers,
           lifePoints
         });
         break;
-      // case 3:
       case 2:
       case 4:
       case 5:
@@ -29,7 +29,7 @@ const SetPlayers = (props) => {
     }
   };
 
-  const generatePlayerButtons = () => {
+  const generatePlayerButtons = (() => {
     let nums = [1, 2, 3, 4, 5, 6];
 
     return nums.map(num => (
@@ -37,13 +37,13 @@ const SetPlayers = (props) => {
         <Text style={styles.buttonText}>{num}</Text>
       </TouchableOpacity>
     ));
-  }
+  })();
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>SET PLAYERS</Text>
       <View style={styles.buttonContainer}>
-        {generatePlayerButtons()}
+        {generatePlayerButtons}
       </View>
       <Header />
     </View>

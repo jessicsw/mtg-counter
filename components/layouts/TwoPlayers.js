@@ -7,7 +7,7 @@ const TwoPlayers = (props) => {
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity onPress={() => nextScreen("180deg")}>
+      <TouchableOpacity onPress={() => nextScreen(1)}>
         <View style={styles.square}>
           <MaterialIcons
             style={{ transform: [{ rotate: "180deg" }] }}
@@ -20,7 +20,7 @@ const TwoPlayers = (props) => {
           <MaterialIcons name="person" size={65} color="#fff" />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => nextScreen("-90deg")}>
+      <TouchableOpacity onPress={() => nextScreen(2)}>
         <View style={styles.square}>
           <MaterialIcons
             style={{ transform: [{ rotate: "-90deg" }] }}
