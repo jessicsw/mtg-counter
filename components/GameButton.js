@@ -5,7 +5,7 @@ import { Ionicons, AntDesign, MaterialCommunityIcons, MaterialIcons, FontAwesome
 
 
 export default function HomeButton(props) {
-  const { numPlayers } = props;
+  const { numPlayers, navigation } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handlePosition = (() => {
@@ -76,7 +76,7 @@ export default function HomeButton(props) {
               <Text style={styles.text}>Dice</Text>
             </View>
             <View style={styles.modalButton}>
-              <TouchableOpacity onPress={() => props.navigation.popToTop()}>
+              <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)} onPressOut={() => navigation.popToTop()}>
                 <AntDesign name="home" size={48} color="white" />
               </TouchableOpacity>
               <Text style={styles.text}>Main Menu</Text>

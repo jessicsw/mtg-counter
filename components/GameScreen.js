@@ -6,8 +6,8 @@ import ThreePlayerCard from './playercards/ThreePlayerCard';
 import FourPlayerCard from './playercards/FourPlayerCard';
 import GameButton from './GameButton';
 
-const GameScreen = (props) => {
-  const { numPlayers, lifePoints, layout } = props.navigation.state.params;
+const GameScreen = ({ navigation }) => {
+  const { numPlayers, lifePoints, layout } = navigation.state.params;
 
   const playerCards = (() => {
     let players = [];
@@ -59,7 +59,7 @@ const GameScreen = (props) => {
   return (
     <View style={handleStyles}>
       {playerCards}
-      <GameButton numPlayers={numPlayers} />
+      <GameButton numPlayers={numPlayers} navigation={navigation} />
     </View>
   )
 };

@@ -3,8 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import useLongPress from '../../helper/useLongPress';
 
-const FourPlayerCard = (props) => {
-  const { player, lifePoints, playerBackgroundColor } = props;
+const FourPlayerCard = ({ player, lifePoints, playerBackgroundColor }) => {
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
 
   const [width, setWidth] = useState();
