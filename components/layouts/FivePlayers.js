@@ -55,7 +55,7 @@ const FivePlayers = (props) => {
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen(1)}>
         {layoutOne}
         <View style={[styles.square, styles.lowerHeight, { flexBasis: '68%' }]}>
           <MaterialIcons
@@ -65,7 +65,7 @@ const FivePlayers = (props) => {
           />
         </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.buttonFlexColumn} onPress={() => nextScreen("180deg")}>
+      <TouchableOpacity style={styles.buttonFlexColumn} onPress={() => nextScreen(2)}>
         {layoutTwo}
       </TouchableOpacity>
     </View>

@@ -53,6 +53,8 @@ const GameScreen = ({ navigation }) => {
       return styles.container;
     } else if (numPlayers === 3) {
       return styles.threePlayer;
+    } else if (numPlayers === 4) {
+      return styles.fourPlayer;
     }
   })();
 
@@ -72,7 +74,11 @@ const styles = StyleSheet.create({
   threePlayer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-  }
+  },
+  fourPlayer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
 });
 
 export default GameScreen;

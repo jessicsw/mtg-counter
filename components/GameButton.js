@@ -133,5 +133,9 @@ const styles = StyleSheet.create({
   threePlayers: {
     bottom: '31%',
     left: '40%'
-  }
+  },
+  fourPlayers: {
+    alignSelf: 'center',
+    left: '40%'
+  },
 });
