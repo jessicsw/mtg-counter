@@ -3,8 +3,8 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import useLongPress from '../../helper/useLongPress';
 
-const FourPlayerCard = (props) => {
-  const { player, lifePoints, playerBackgroundColor, layout } = props;
+const FivePlayerCard = (props) => {
+  const { player, lifePoints, playerBackgroundColor } = props;
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
 
   const [width, setWidth] = useState();
@@ -64,13 +64,6 @@ const FourPlayerCard = (props) => {
     }
   })();
 
-  const addFlexBasis = (() => {
-    if (layout === 2) {
-      return player === 1 || player === 4 && styles.fullWidthFlexBasis
-
-    }
-  })();
-
   return (
     <View style={styles.container}>
       <View
@@ -78,14 +71,12 @@ const FourPlayerCard = (props) => {
         style={[
           styles.playerCard,
           playerBackgroundColor,
-          addMargins,
-          addFlexBasis
+          addMargins
         ]}
       >
         <View style={[styles.center, handleTextTransform]}>
           <Text style={styles.text}>{playerLifePoints}</Text>
           <AntDesign name="heart" size={30} color="#000" />
-          <Text>{player}</Text>
         </View>
         <TouchableOpacity
           style={[
@@ -113,10 +104,11 @@ const FourPlayerCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexBasis: '50%',
+    flexBasis: '50%',
     backgroundColor: '#000'
   },
   playerCard: {
+    flexBasis: '50%',
     borderRadius: 10,
     justifyContent: 'center'
   },
@@ -135,9 +127,6 @@ const styles = StyleSheet.create({
   center: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  fullWidthFlexBasis: {
-    flexBasis: '100%'
   },
   buttonAbsoluteTop: {
     top: 0,
@@ -159,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FourPlayerCard;
+export default FivePlayerCard;

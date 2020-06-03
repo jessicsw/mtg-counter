@@ -4,6 +4,7 @@ import DefaultPlayerCard from "./playercards/DefaultPlayerCard";
 import addBackgroundColor from "../helper/addBackgroundColor";
 import ThreePlayerCard from './playercards/ThreePlayerCard';
 import FourPlayerCard from './playercards/FourPlayerCard';
+import FivePlayerCard from './playercards/FivePlayerCard';
 import GameButton from './GameButton';
 
 const GameScreen = ({ navigation }) => {
@@ -55,6 +56,10 @@ const GameScreen = ({ navigation }) => {
       return styles.threePlayer;
     } else if (numPlayers === 4) {
       return styles.fourPlayer;
+    } else if (numPlayers === 5) {
+      return styles.fivePlayer;
+    } else if (numPlayers === 6) {
+      return styles.sixPlayer;
     }
   })();
 
