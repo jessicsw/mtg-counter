@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 15,
     width: "73%",
-    height: "53%",
+    flexBasis: '53%',
     backgroundColor: "#fff",
     alignSelf: "center",
   },

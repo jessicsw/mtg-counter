@@ -4,11 +4,9 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Animated,
 } from "react-native";
 import { normalizedCenter } from "../helper/dimensions";
-import { Transition } from "react-navigation-fluid-transitions";
-//need to import fluidNav to use transition
+
 export default class StartScreen extends Component {
   nextScreen = () => {
     this.props.navigation.navigate("SetLife");
