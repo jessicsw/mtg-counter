@@ -5,7 +5,7 @@ import { Ionicons, AntDesign, MaterialCommunityIcons, MaterialIcons, FontAwesome
 
 
 export default function HomeButton(props) {
-  const { numPlayers, navigation } = props;
+  const { numPlayers, navigation, layout } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handlePosition = (() => {
@@ -16,7 +16,9 @@ export default function HomeButton(props) {
     } else if (numPlayers === 3) {
       return styles.threePlayers;
     } else if (numPlayers === 4) {
-      return styles.fourPlayers;
+      return layout === 1
+        ? styles.fourPlayersLayoutOne
+        : styles.fourPlayersLayoutTwo
     } else if (numPlayers === 5) {
       return styles.fivePlayers;
     } else if (numPlayers === 6) {
@@ -134,8 +136,12 @@ const styles = StyleSheet.create({
     bottom: '31%',
     left: '40%'
   },
-  fourPlayers: {
+  fourPlayersLayoutOne: {
     alignSelf: 'center',
     left: '40%'
+  },
+  fourPlayersLayoutTwo: {
+    left: '40%',
+    top: '21%'
   },
 });

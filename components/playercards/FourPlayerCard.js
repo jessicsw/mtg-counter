@@ -18,21 +18,55 @@ const FourPlayerCard = (props) => {
 
   //Setup absolute position and size of +/- buttons
   const setButtonPosition = (position) => {
-    if (player === 1 || player === 3) {
-      return position === "+"
-        ? styles.buttonAbsoluteRight
-        : styles.buttonAbsoluteLeft;
+    if (layout === 1) {
+      if (player === 1 || player === 3) {
+        return position === "+"
+          ? styles.buttonAbsoluteRight
+          : styles.buttonAbsoluteLeft;
+      } else {
+        return position === "+"
+          ? styles.buttonAbsoluteLeft
+          : styles.buttonAbsoluteRight;
+      };
     } else {
-      return position === "+"
-        ? styles.buttonAbsoluteLeft
-        : styles.buttonAbsoluteRight;
-    };
+      if (player === 1) {
+        return position === "+"
+          ? styles.buttonAbsoluteBottom
+          : styles.buttonAbsoluteTop;
+      } else if (player === 2) {
+        return position === "+"
+          ? styles.buttonAbsoluteRight
+          : styles.buttonAbsoluteLeft;
+      } else if (player === 3) {
+        return position === "+"
+          ? styles.buttonAbsoluteLeft
+          : styles.buttonAbsoluteRight;
+      } else if (player === 4) {
+        return position === "+"
+          ? styles.buttonAbsoluteTop
+          : styles.buttonAbsoluteBottom;
+      }
+    }
   };
 
   const setButtonSize = (() => {
-    return {
-      width: width / 2,
-      height,
+    if (layout === 1) {
+      return {
+        width: width / 2,
+        height,
+      };
+    } else {
+      if (player === 2 || player === 3) {
+        return {
+          width: width / 2,
+          height,
+        };
+      } else {
+        return {
+          width,
+          height: height / 2,
+        };
+      };
     };
   })();
 
@@ -47,45 +81,83 @@ const FourPlayerCard = (props) => {
 
   // Adds CSS unique to layout
   const handleTextTransform = (() => {
-    if (player === 1 || player === 3) {
-      return styles.leftTransform;
+    if (layout === 1) {
+      if (player === 1 || player === 3) {
+        return styles.leftTransform;
+      } else {
+        return styles.rightTransform;
+      }
     } else {
-      return styles.rightTransform;
+      if (player === 1) {
+        return styles.topTransform;
+      } else if (player === 2) {
+        return styles.leftTransform;
+      } else if (player === 3) {
+        return styles.rightTransform;
+      }
     }
   })();
 
   const addMargins = (() => {
-    if (player === 1) {
-      return { marginRight: 10 };
-    } else if (player === 3) {
-      return { marginTop: 10, marginRight: 10 };
-    } else if (player === 4) {
-      return { marginTop: 10 };
+    if (layout === 1) {
+      if (player === 1) {
+        return { marginRight: 10 };
+      } else if (player === 3) {
+        return { marginTop: 10, marginRight: 10 };
+      } else if (player === 4) {
+        return { marginTop: 10 };
+      }
+    } else {
+      if (player === 1) {
+        return { marginBottom: 10 }
+      } else if (player === 2) {
+        return { marginRight: 10 }
+      } else if (player === 4) {
+        return { marginTop: 10 }
+      }
     }
   })();
 
   const addFlexBasis = (() => {
     if (layout === 2) {
-      return player === 1 || player === 4 && styles.fullWidthFlexBasis
+      if (player === 1 || player === 4) {
+        return styles.fullWidthFlexBasis;
+      } else {
+        return styles.halfWidthFlexBasis;
+      }
+    }
+  })();
 
+  const setPlayerCardStyles = (() => {
+    if (layout === 1) {
+      return styles.playerCardLayoutOne;
+    } else {
+      return styles.playerCardLayoutTwo;
+    }
+  })();
+
+  const setContainerStyles = (() => {
+    if (layout === 1) {
+      return styles.containerLayoutOne;
+    } else {
+      return styles.containerLayoutTwo;
     }
   })();
 
   return (
-    <View style={styles.container}>
+
+    <View style={[setContainerStyles, addFlexBasis]}>
       <View
         onLayout={getComponentDimensions}
         style={[
-          styles.playerCard,
+          setPlayerCardStyles,
           playerBackgroundColor,
           addMargins,
-          addFlexBasis
         ]}
       >
         <View style={[styles.center, handleTextTransform]}>
           <Text style={styles.text}>{playerLifePoints}</Text>
           <AntDesign name="heart" size={30} color="#000" />
-          <Text>{player}</Text>
         </View>
         <TouchableOpacity
           style={[
@@ -111,12 +183,23 @@ const FourPlayerCard = (props) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
+  containerLayoutOne: {
     flex: 1,
-    // flexBasis: '50%',
+    flexBasis: '50%',
     backgroundColor: '#000'
   },
-  playerCard: {
+  containerLayoutTwo: {
+    flex: 1,
+    backgroundColor: '#000',
+    flexDirection: 'column',
+  },
+  playerCardLayoutOne: {
+    flexBasis: '50%',
+    borderRadius: 10,
+    justifyContent: 'center'
+  },
+  playerCardLayoutTwo: {
+    height: '48%',
     borderRadius: 10,
     justifyContent: 'center'
   },
@@ -133,11 +216,7 @@ const styles = StyleSheet.create({
     opacity: 0,
   },
   center: {
-    justifyContent: "center",
     alignItems: "center",
-  },
-  fullWidthFlexBasis: {
-    flexBasis: '100%'
   },
   buttonAbsoluteTop: {
     top: 0,
@@ -156,6 +235,15 @@ const styles = StyleSheet.create({
   },
   rightTransform: {
     transform: [{ rotate: "-90deg" }]
+  },
+  topTransform: {
+    transform: [{ rotate: "180deg" }]
+  },
+  fullWidthFlexBasis: {
+    flexBasis: '100%'
+  },
+  halfWidthFlexBasis: {
+    flexBasis: '50%'
   },
 });
 

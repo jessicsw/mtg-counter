@@ -23,7 +23,7 @@ const SetPlayers = (props) => {
       case 6:
         navigate("SetLayout", {
           numPlayers,
-          lifePoints
+          lifePoints,
         });
         break;
     }

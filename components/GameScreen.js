@@ -66,7 +66,11 @@ const GameScreen = ({ navigation }) => {
   return (
     <View style={handleStyles}>
       {playerCards}
-      <GameButton numPlayers={numPlayers} navigation={navigation} />
+      <GameButton
+        numPlayers={numPlayers}
+        navigation={navigation}
+        layout={layout}
+      />
     </View>
   )
 };
@@ -82,7 +86,7 @@ const styles = StyleSheet.create({
   },
   fourPlayer: {
     flexDirection: 'row',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
 });
 
