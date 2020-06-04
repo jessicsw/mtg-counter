@@ -157,6 +157,11 @@ const styles = StyleSheet.create({
     top: '45%'
   },
   sixPlayersLayoutOne: {
-
-  }
+    left: '40%',
+    top: '29%'
+  },
+  sixPlayersLayoutTwo: {
+    alignSelf: 'center',
+    left: '40%'
+  },
 });

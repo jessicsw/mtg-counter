@@ -31,10 +31,10 @@ const SixPlayers = (props) => {
 
   return (
     <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen(1)}>
         {layoutOne}
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => nextScreen("180deg")}>
+      <TouchableOpacity style={styles.button} onPress={() => nextScreen(2)}>
         <View style={[styles.square, { flexBasis: '73%', height: '12.5%' }]}>
           <MaterialIcons
             style={{ transform: [{ rotate: "180deg" }] }}

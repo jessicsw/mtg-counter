@@ -5,6 +5,7 @@ import addBackgroundColor from "../helper/addBackgroundColor";
 import ThreePlayerCard from './playercards/ThreePlayerCard';
 import FourPlayerCard from './playercards/FourPlayerCard';
 import FivePlayerCard from './playercards/FivePlayerCard';
+import SixPlayerCard from './playercards/SixPlayerCard';
 import GameButton from './GameButton';
 
 const GameScreen = ({ navigation }) => {
@@ -56,7 +57,17 @@ const GameScreen = ({ navigation }) => {
           playerBackgroundColor={addBackgroundColor()}
         />
       ));
-    }
+    } else {
+      return players.map(player => (
+        <SixPlayerCard
+          key={player}
+          player={player}
+          lifePoints={lifePoints}
+          layout={layout}
+          playerBackgroundColor={addBackgroundColor()}
+        />
+      ));
+    };
   })();
 
   const handleStyles = (() => {
@@ -71,7 +82,7 @@ const GameScreen = ({ navigation }) => {
         ? styles.flexRowWrap
         : styles.flexColumnWrap;
     } else if (numPlayers === 6) {
-      return styles.sixPlayer;
+      return styles.flexRowWrap;
     }
   })();
 
