@@ -46,6 +46,16 @@ const GameScreen = ({ navigation }) => {
           playerBackgroundColor={addBackgroundColor()}
         />
       ));
+    } else if (numPlayers === 5) {
+      return players.map(player => (
+        <FivePlayerCard
+          key={player}
+          player={player}
+          lifePoints={lifePoints}
+          layout={layout}
+          playerBackgroundColor={addBackgroundColor()}
+        />
+      ));
     }
   })();
 
@@ -85,6 +95,10 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   fourPlayer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  fivePlayer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },

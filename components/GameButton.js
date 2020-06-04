@@ -20,9 +20,13 @@ export default function HomeButton(props) {
         ? styles.fourPlayersLayoutOne
         : styles.fourPlayersLayoutTwo
     } else if (numPlayers === 5) {
-      return styles.fivePlayers;
+      return layout === 1
+        ? styles.fivePlayersLayoutOne
+        : styles.fivePlayersLayoutTwo
     } else if (numPlayers === 6) {
-      return styles.sixPlayers;
+      return layout === 1
+        ? styles.sixPlayersLayoutOne
+        : styles.sixPlayersLayoutTwo
     }
   })();
 
@@ -144,4 +148,13 @@ const styles = StyleSheet.create({
     left: '40%',
     top: '21%'
   },
+  fivePlayersLayoutOne: {
+    left: '40%',
+    bottom: '29%'
+  },
+  fivePlayersLayoutTwo: {
+  },
+  sixPlayersLayoutOne: {
+
+  }
 });
