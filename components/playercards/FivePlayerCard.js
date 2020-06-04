@@ -31,8 +31,18 @@ const FivePlayerCard = (props) => {
         return position === "+"
           ? styles.buttonAbsoluteTop
           : styles.buttonAbsoluteBottom;
-      }
-    }
+      };
+    } else {
+      if (player < 4) {
+        return position === "+"
+          ? styles.buttonAbsoluteLeft
+          : styles.buttonAbsoluteRight;
+      } else {
+        return position === "+"
+          ? styles.buttonAbsoluteRight
+          : styles.buttonAbsoluteLeft;
+      };
+    };
   };
 
   const setButtonSize = (() => {
@@ -48,7 +58,12 @@ const FivePlayerCard = (props) => {
           height: height / 2,
         };
       }
-    };
+    } else {
+      return {
+        width: width / 2,
+        height,
+      };
+    }
   })();
 
   //Counter Functionality
@@ -67,6 +82,12 @@ const FivePlayerCard = (props) => {
         return styles.leftTransform;
       } else if (player === 2 || player === 4) {
         return styles.rightTransform;
+      };
+    } else {
+      if (player < 4) {
+        return styles.rightTransform;
+      } else {
+        return styles.leftTransform;
       }
     }
   })();
@@ -80,7 +101,23 @@ const FivePlayerCard = (props) => {
       } else if (player === 4 || player === 5) {
         return { marginTop: 10 };
       };
-    };
+    } else {
+      if (player === 1 || player === 2) {
+        return { marginBottom: 10 };
+      } else if (player === 4) {
+        return { marginBottom: 10, marginRight: 10 };
+      } else if (player === 5) {
+        return { marginRight: 10 };
+      }
+    }
+  })();
+
+  const setPlayerCards = (() => {
+    if (layout === 1) {
+      return styles.playerCardLayoutOne;
+    } else {
+      return styles.playerCardLayoutTwo;
+    }
   })();
 
   return (
@@ -88,7 +125,7 @@ const FivePlayerCard = (props) => {
       <View
         onLayout={getComponentDimensions}
         style={[
-          styles.playerCard,
+          setPlayerCards,
           playerBackgroundColor,
           addMargins
         ]}
@@ -123,13 +160,19 @@ const FivePlayerCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexBasis: '50%',
-    backgroundColor: '#000'
+    flexBasis: '33%',
+    width: '50%',
+    backgroundColor: '#000',
   },
-  playerCard: {
-    borderRadius: 10,
+  playerCardLayoutOne: {
+    flexBasis: '33%',
     justifyContent: 'center',
-    flexBasis: '33%'
+    borderRadius: 10,
+  },
+  playerCardLayoutTwo: {
+    flex: 1,
+    justifyContent: 'center',
+    borderRadius: 10,
   },
   text: {
     fontSize: 130,

@@ -153,6 +153,8 @@ const styles = StyleSheet.create({
     bottom: '29%'
   },
   fivePlayersLayoutTwo: {
+    left: '15%',
+    top: '45%'
   },
   sixPlayersLayoutOne: {
 

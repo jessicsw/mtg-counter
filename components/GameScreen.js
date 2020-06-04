@@ -63,11 +63,13 @@ const GameScreen = ({ navigation }) => {
     if (numPlayers < 3) {
       return styles.container;
     } else if (numPlayers === 3) {
-      return styles.threePlayer;
+      return styles.flexRowWrap;
     } else if (numPlayers === 4) {
-      return styles.fourPlayer;
+      return styles.flexRowWrap;
     } else if (numPlayers === 5) {
-      return styles.fivePlayer;
+      return layout === 1
+        ? styles.flexRowWrap
+        : styles.flexColumnWrap;
     } else if (numPlayers === 6) {
       return styles.sixPlayer;
     }
@@ -90,17 +92,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'flex-start',
   },
-  threePlayer: {
+  flexRowWrap: {
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  fourPlayer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-  },
-  fivePlayer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+  flexColumnWrap: {
+    backgroundColor: 'pink',
+    flexDirection: 'column',
+    flexWrap: 'wrap-reverse',
   },
 });
 
