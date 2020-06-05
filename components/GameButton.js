@@ -54,6 +54,7 @@ export default function HomeButton(props) {
           hasBackdrop={true}
           isVisible={isModalVisible}
           backdropOpacity={0.9}
+          backdropTransitionOutTiming={0}
         >
           <View style={styles.modalButtons}>
             <View style={styles.modalButton}>
@@ -102,7 +103,7 @@ export default function HomeButton(props) {
               <Text style={styles.text}>Main Menu</Text>
             </View>
             <View style={styles.modalButton}>
-              <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
+              <TouchableOpacity onPressOut={() => setIsModalVisible(!isModalVisible)}>
                 <AntDesign name="back" size={50} color="white" />
               </TouchableOpacity>
               <Text style={styles.text}>Back</Text>
