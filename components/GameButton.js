@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import Modal from 'react-native-modal';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import { Ionicons, AntDesign, MaterialCommunityIcons, MaterialIcons, FontAwesome5, SimpleLineIcons } from '@expo/vector-icons';
+import { resetBackgroundColors } from '../helper/addBackgroundColor';
 
 
 export default function HomeButton(props) {
-  const { numPlayers, navigation, layout } = props;
+  const { numPlayers, navigation, layout, handleReset } = props;
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handlePosition = (() => {
@@ -30,6 +31,16 @@ export default function HomeButton(props) {
     }
   })();
 
+  const handleMainMenuButton = () => {
+    setIsModalVisible(!isModalVisible);
+    resetBackgroundColors();
+  };
+
+  // const handleResetButton = () => {
+  //   setIsModalVisible(!isModalVisible);
+  //   handleReset(true);
+  // };
+
   return (
     <View style={[styles.container, handlePosition]}>
       <TouchableOpacity
@@ -53,7 +64,7 @@ export default function HomeButton(props) {
             </View>
             <View style={styles.modalButton}>
               <TouchableOpacity>
-                <Ionicons name="ios-refresh" size={55} color="white" />
+                <Ionicons name="ios-refresh" size={54} color="white" />
               </TouchableOpacity>
               <Text style={styles.text}>Reset</Text>
             </View>
@@ -82,7 +93,10 @@ export default function HomeButton(props) {
               <Text style={styles.text}>Dice</Text>
             </View>
             <View style={styles.modalButton}>
-              <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)} onPressOut={() => navigation.popToTop()}>
+              <TouchableOpacity
+                onPress={() => handleMainMenuButton()}
+                onPressOut={() => navigation.popToTop()}
+              >
                 <AntDesign name="home" size={48} color="white" />
               </TouchableOpacity>
               <Text style={styles.text}>Main Menu</Text>
