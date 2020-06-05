@@ -67,9 +67,9 @@ const ThreePlayerCard = (props) => {
 
   const addMargins = (() => {
     if (player === 1) {
-      return { marginRight: 10 };
+      return styles.marginRight;
     } else if (player === 3) {
-      return { marginTop: 10 };
+      return styles.marginTop;
     }
   })();
 
@@ -162,6 +162,12 @@ const styles = StyleSheet.create({
   },
   rightTransform: {
     transform: [{ rotate: "-90deg" }]
+  },
+  marginRight: {
+    marginRight: 10,
+  },
+  marginTop: {
+    marginTop: 10,
   },
 });
 

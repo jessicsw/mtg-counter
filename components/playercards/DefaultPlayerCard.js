@@ -4,9 +4,8 @@ import { AntDesign } from "@expo/vector-icons";
 import useLongPress from "../../helper/useLongPress";
 
 const DefaultPlayerCard = (props) => {
-  const { player, lifePoints, layout, playerBackgroundColor } = props;
+  const { player, lifePoints, layout, playerBackgroundColor, handleReset, resetLifePoints } = props;
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
-
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
 
@@ -18,19 +17,21 @@ const DefaultPlayerCard = (props) => {
 
   //Setup absolute position and size of +/- buttons
   const setButtonPosition = (position) => {
-    if (player == 1 && layout === 1) {
-      return position === "+"
-        ? styles.buttonAbsoluteBottom
-        : styles.buttonAbsoluteTop;
-    } else if (player == 2 && layout === 1) {
-      return position === "+"
-        ? styles.buttonAbsoluteTop
-        : styles.buttonAbsoluteBottom;
+    if (layout === 1) {
+      if (player === 1) {
+        return position === "+"
+          ? styles.buttonAbsoluteBottom
+          : styles.buttonAbsoluteTop;
+      } else {
+        return position === "+"
+          ? styles.buttonAbsoluteTop
+          : styles.buttonAbsoluteBottom;
+      };
     } else {
       return position === "+"
         ? styles.buttonAbsoluteLeft
         : styles.buttonAbsoluteRight;
-    }
+    };
   };
 
   const setButtonSize = () => {
@@ -47,6 +48,14 @@ const DefaultPlayerCard = (props) => {
     }
   };
 
+  const handleTextTransform = (() => {
+    if (layout === 1) {
+      return player === 1 ? styles.topTransform : styles.center;
+    } else {
+      return styles.rightTransform;
+    }
+  })();
+
   //Counter Functionality
   const addLife = () => {
     setPlayerLifePoints(playerLifePoints + 1);
@@ -56,13 +65,17 @@ const DefaultPlayerCard = (props) => {
     playerLifePoints > 0 && setPlayerLifePoints(playerLifePoints - 1);
   };
 
-  const handleTextTransform = (() => {
-    if (layout === 1) {
-      return player === 1 ? styles.topTransform : styles.center;
-    } else {
-      return styles.rightTransform;
-    }
-  })();
+  const addMargin = player === 2 && styles.marginTop;
+
+  // const handleLifePoints = (() => {
+  //   if (resetLifePoints) {
+  //     handleReset(false);
+  //     return setPlayerLifePoints(lifePoints);
+  //   } else {
+  //     return playerLifePoints;
+  //   }
+  // })();
+
 
   return (
     <View style={styles.container}>
@@ -70,7 +83,7 @@ const DefaultPlayerCard = (props) => {
         onLayout={getComponentDimensions}
         style={[
           styles.playerCard,
-          player === 2 && styles.marginTop,
+          addMargin,
           playerBackgroundColor,
         ]}
       >
@@ -105,11 +118,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    flexBasis: '50%',
     backgroundColor: '#000'
   },
   playerCard: {
-    flex: 1,
+    flexBasis: '100%',
     borderRadius: 10,
     justifyContent: "center",
   },

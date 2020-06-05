@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   playerCardLayoutTwo: {
-    height: '48%',
+    flexBasis: '33%',
     borderRadius: 10,
     justifyContent: 'center'
   },
