@@ -120,8 +120,10 @@ const FivePlayerCard = (props) => {
     }
   })();
 
+  const addFlexBasis = layout === 1 ? styles.halfWidthFlexBasis : styles.thirdWidthFlexBasis;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, addFlexBasis]}>
       <View
         onLayout={getComponentDimensions}
         style={[
@@ -160,7 +162,6 @@ const FivePlayerCard = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexBasis: '33%',
     width: '50%',
     backgroundColor: '#000',
   },
@@ -208,6 +209,12 @@ const styles = StyleSheet.create({
   rightTransform: {
     transform: [{ rotate: "-90deg" }]
   },
+  thirdWidthFlexBasis: {
+    flexBasis: '33%',
+  },
+  halfWidthFlexBasis: {
+    flexBasis: '50%',
+  }
 });
 
 export default FivePlayerCard;
