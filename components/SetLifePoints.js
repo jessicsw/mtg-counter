@@ -35,20 +35,18 @@ const SetLifePoints = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>SET LIFE POINTS</Text>
-        <View style={styles.buttonContainer}>
-          {generateLifePointButtons}
-        </View>
-        <TouchableOpacity
-          style={styles.buttonBorder}
-          onPress={() => setCustomLife()}
-        >
-          <Text style={[styles.buttonText, styles.purpleText]}>
-            CUSTOM LIFE
-          </Text>
-        </TouchableOpacity>
+      <Text style={styles.title}>SET LIFE POINTS</Text>
+      <View style={styles.buttonContainer}>
+        {generateLifePointButtons}
       </View>
+      <TouchableOpacity
+        style={styles.buttonBorder}
+        onPress={() => setCustomLife()}
+      >
+        <Text style={[styles.buttonText, styles.purpleText]}>
+          CUSTOM LIFE
+          </Text>
+      </TouchableOpacity>
       <Modal
         animationIn="fadeIn"
         animationOut="fadeOut"
@@ -69,28 +67,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5FCFF",
-  },
-  contentContainer: {
-    flex: 1,
     alignItems: "center",
   },
   buttonContainer: {
     flexDirection: "row",
+    marginRight: 40,
+    marginLeft: 40,
   },
   title: {
     marginTop: normalizedCenter,
     fontSize: 35,
     fontWeight: "200",
+    marginBottom: 30,
   },
   button: {
     backgroundColor: "#9f82b2",
-    marginTop: 50,
+    marginTop: 25,
     marginRight: 10,
     marginLeft: 10,
-    padding: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
     borderRadius: 10,
+    flexBasis: '21%',
+    height: '31%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonBorder: {
     borderColor: "#9f82b2",

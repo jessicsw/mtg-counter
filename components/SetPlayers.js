@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginRight: 40,
     marginLeft: 40,
+    backgroundColor: 'yellow',
   },
   title: {
     marginTop: normalizedCenter,
