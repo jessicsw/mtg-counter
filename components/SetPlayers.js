@@ -4,8 +4,8 @@ import Header from "./Header";
 import { normalizedCenter } from "../helper/dimensions";
 
 
-const SetPlayers = (props) => {
-  const { navigate, state } = props.navigation;
+const SetPlayers = ({ navigation }) => {
+  const { navigate, state } = navigation;
   const { lifePoints } = state.params;
 
   const nextScreen = (numPlayers) => {
@@ -57,12 +57,11 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: 'center',
     flexWrap: 'wrap',
     marginRight: 40,
-    marginLeft: 40
+    marginLeft: 40,
   },
   title: {
     marginTop: normalizedCenter,
@@ -75,11 +74,11 @@ const styles = StyleSheet.create({
     marginTop: 25,
     marginRight: 10,
     marginLeft: 10,
-    padding: 15,
-    paddingLeft: 25,
-    paddingRight: 25,
     borderRadius: 10,
-    alignItems: 'center'
+    alignItems: 'center',
+    flexBasis: '20%',
+    height: '20%',
+    justifyContent: 'center',
   },
   buttonText: {
     fontSize: 30,
