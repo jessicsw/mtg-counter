@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import useLongPress from "../../helper/useLongPress";
 
-const DefaultPlayerCard = (props) => {
-  const { player, lifePoints, layout, playerBackgroundColor, handleReset, resetLifePoints } = props;
+const DefaultPlayerCard = ({
+  player,
+  lifePoints,
+  layout,
+  playerBackgroundColor,
+  handleResetLifePoints,
+  resetLifePoints }) => {
   const [playerLifePoints, setPlayerLifePoints] = useState(lifePoints);
   const [width, setWidth] = useState();
   const [height, setHeight] = useState();
+
+  useEffect(() => {
+    setPlayerLifePoints(lifePoints);
+    handleResetLifePoints(false);
+  }, [resetLifePoints])
 
   const getComponentDimensions = (event) => {
     let { width, height } = event.nativeEvent.layout;
@@ -66,16 +76,6 @@ const DefaultPlayerCard = (props) => {
   };
 
   const addMargin = player === 2 && styles.marginTop;
-
-  // const handleLifePoints = (() => {
-  //   if (resetLifePoints) {
-  //     handleReset(false);
-  //     return setPlayerLifePoints(lifePoints);
-  //   } else {
-  //     return playerLifePoints;
-  //   }
-  // })();
-
 
   return (
     <View style={styles.container}>

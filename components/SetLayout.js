@@ -8,13 +8,14 @@ import FivePlayers from './layouts/FivePlayers';
 import SixPlayers from './layouts/SixPlayers';
 
 const SetLayout = props => {
-  const { numPlayers, lifePoints } = props.navigation.state.params;
+  const { numPlayers, lifePoints, playerBackgroundColors } = props.navigation.state.params;
 
   const nextScreen = layout => {
     props.navigation.navigate("Game", {
-      numPlayers: numPlayers,
-      lifePoints: lifePoints,
-      layout: layout
+      numPlayers,
+      lifePoints,
+      layout,
+      playerBackgroundColors
     });
   };
 

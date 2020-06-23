@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import DefaultPlayerCard from "./playercards/DefaultPlayerCard";
-import addBackgroundColor from "../helper/addBackgroundColor";
 import ThreePlayerCard from './playercards/ThreePlayerCard';
 import FourPlayerCard from './playercards/FourPlayerCard';
 import FivePlayerCard from './playercards/FivePlayerCard';
@@ -9,7 +8,12 @@ import SixPlayerCard from './playercards/SixPlayerCard';
 import GameButton from './GameButton';
 
 const GameScreen = ({ navigation }) => {
-  const { numPlayers, lifePoints, layout } = navigation.state.params;
+  const { numPlayers, lifePoints, layout, playerBackgroundColors } = navigation.state.params;
+  const [resetLifePoints, setResetLifePoints] = useState(false);
+
+  const handleResetLifePoints = bool => {
+    setResetLifePoints(bool);
+  }
 
   const playerCards = (() => {
     let players = [];
@@ -25,7 +29,9 @@ const GameScreen = ({ navigation }) => {
           player={player}
           lifePoints={lifePoints}
           layout={layout}
-          playerBackgroundColor={addBackgroundColor()}
+          playerBackgroundColor={playerBackgroundColors[player - 1]}
+          handleResetLifePoints={handleResetLifePoints}
+          resetLifePoints={resetLifePoints}
         />
       ));
     } else if (numPlayers === 3) {
@@ -34,7 +40,9 @@ const GameScreen = ({ navigation }) => {
           key={player}
           player={player}
           lifePoints={lifePoints}
-          playerBackgroundColor={addBackgroundColor()}
+          playerBackgroundColor={playerBackgroundColors[player - 1]}
+          handleResetLifePoints={handleResetLifePoints}
+          resetLifePoints={resetLifePoints}
         />
       ));
     } else if (numPlayers === 4) {
@@ -44,7 +52,9 @@ const GameScreen = ({ navigation }) => {
           player={player}
           lifePoints={lifePoints}
           layout={layout}
-          playerBackgroundColor={addBackgroundColor()}
+          playerBackgroundColor={playerBackgroundColors[player - 1]}
+          handleResetLifePoints={handleResetLifePoints}
+          resetLifePoints={resetLifePoints}
         />
       ));
     } else if (numPlayers === 5) {
@@ -54,7 +64,9 @@ const GameScreen = ({ navigation }) => {
           player={player}
           lifePoints={lifePoints}
           layout={layout}
-          playerBackgroundColor={addBackgroundColor()}
+          playerBackgroundColor={playerBackgroundColors[player - 1]}
+          handleResetLifePoints={handleResetLifePoints}
+          resetLifePoints={resetLifePoints}
         />
       ));
     } else {
@@ -64,7 +76,9 @@ const GameScreen = ({ navigation }) => {
           player={player}
           lifePoints={lifePoints}
           layout={layout}
-          playerBackgroundColor={addBackgroundColor()}
+          playerBackgroundColor={playerBackgroundColors[player - 1]}
+          handleResetLifePoints={handleResetLifePoints}
+          resetLifePoints={resetLifePoints}
         />
       ));
     };
@@ -93,6 +107,7 @@ const GameScreen = ({ navigation }) => {
         numPlayers={numPlayers}
         navigation={navigation}
         layout={layout}
+        handleResetLifePoints={handleResetLifePoints}
       />
     </View>
   )
@@ -108,7 +123,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   flexColumnWrap: {
-    backgroundColor: 'pink',
     flexDirection: 'column',
     flexWrap: 'wrap-reverse',
   },

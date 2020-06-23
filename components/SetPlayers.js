@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Header from "./Header";
 import { normalizedCenter } from "../helper/dimensions";
+import { addPlayerBackgroundColors } from "../helper/addBackgroundColor";
 
 
 const SetPlayers = ({ navigation }) => {
@@ -14,7 +15,8 @@ const SetPlayers = ({ navigation }) => {
       case 3:
         navigate("Game", {
           numPlayers,
-          lifePoints
+          lifePoints,
+          playerBackgroundColors: addPlayerBackgroundColors(numPlayers),
         });
         break;
       case 2:
@@ -24,6 +26,7 @@ const SetPlayers = ({ navigation }) => {
         navigate("SetLayout", {
           numPlayers,
           lifePoints,
+          playerBackgroundColors: addPlayerBackgroundColors(numPlayers),
         });
         break;
     }
@@ -33,7 +36,11 @@ const SetPlayers = ({ navigation }) => {
     let nums = [1, 2, 3, 4, 5, 6];
 
     return nums.map(num => (
-      <TouchableOpacity key={num} style={styles.button} onPress={() => nextScreen(num)}>
+      <TouchableOpacity
+        key={num}
+        style={styles.button}
+        onPress={() => nextScreen(num)}
+      >
         <Text style={styles.buttonText}>{num}</Text>
       </TouchableOpacity>
     ));
@@ -62,7 +69,6 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginRight: 40,
     marginLeft: 40,
-    backgroundColor: 'yellow',
   },
   title: {
     marginTop: normalizedCenter,
