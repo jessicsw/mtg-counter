@@ -11,7 +11,6 @@ import { Ionicons } from "@expo/vector-icons";
 const CustomLife = (props) => {
   const { toggleModal, setLifePoints } = props;
   const [value, setValue] = useState("");
-  // fix inconsistent padding on "1" button
 
   const handleSetValue = (num) => {
     if (value.length === 0 && num === 0) {
@@ -52,7 +51,7 @@ const CustomLife = (props) => {
         <View style={styles.flexEnd}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => value.length != 0 && handleSetValue("0")}
+            onPress={() => value.length != 0 && handleSetValue(0)}
             activeOpacity={0.7}
           >
             <Text style={styles.buttonText}>0</Text>
