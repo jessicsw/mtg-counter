@@ -5,8 +5,7 @@ import { Ionicons, AntDesign, MaterialCommunityIcons, MaterialIcons, FontAwesome
 import { resetBackgroundColors } from '../helper/addBackgroundColor';
 
 
-export default function HomeButton(props) {
-  const { numPlayers, navigation, layout, handleReset } = props;
+const HomeButton = ({ numPlayers, navigation, layout, handleResetLifePoints }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const handlePosition = (() => {
@@ -36,10 +35,10 @@ export default function HomeButton(props) {
     resetBackgroundColors();
   };
 
-  // const handleResetButton = () => {
-  //   setIsModalVisible(!isModalVisible);
-  //   handleReset(true);
-  // };
+  const handleResetButton = () => {
+    setIsModalVisible(!isModalVisible);
+    handleResetLifePoints(true);
+  };
 
   return (
     <View style={[styles.container, handlePosition]}>
@@ -64,7 +63,7 @@ export default function HomeButton(props) {
               <Text style={styles.text}>Timer</Text>
             </View>
             <View style={styles.modalButton}>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => handleResetButton()}>
                 <Ionicons name="ios-refresh" size={54} color="white" />
               </TouchableOpacity>
               <Text style={styles.text}>Reset</Text>
@@ -161,7 +160,7 @@ const styles = StyleSheet.create({
   },
   fourPlayersLayoutTwo: {
     left: '40%',
-    top: '21%'
+    top: '29%'
   },
   fivePlayersLayoutOne: {
     left: '40%',
@@ -180,3 +179,5 @@ const styles = StyleSheet.create({
     left: '40%'
   },
 });
+
+export default HomeButton;
